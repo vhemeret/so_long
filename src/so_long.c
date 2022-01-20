@@ -6,13 +6,15 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/17 18:58:16 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/20 02:37:22 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx_linux/mlx.h"
+#include "../so_long.h"
 
-typedef	struct	s_data {
+/*
+typedef	struct	s_data 
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -40,9 +42,11 @@ int main(void)
 		return (0);
 	mlx_put_image_to_window(mlx, window, img, 1, 1);
 	mlx_loop(mlx);
+}*/
 
-	//img->img = mlx_new_image(mlx, img_width, img_heigth);
-	//img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
-	//mlx_new_window(mlx, 1000, 500, "test window mlx");
-
+int main(int ac, char **av)
+{
+	if (!check_error(ac, av))
+		return (0);
+	return (0);
 }
