@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/21 19:40:36 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/21 23:09:41 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ int		check_name_file(char *path_to_file);
 
 /*	PARSING MAP		*/
 int		check_map_struct(char **map);
-int		unexpected_char(char **map);
-int		map_is_rectangle(char **map);
-int		check_map_border(char **map);
+int		check_map_element(char **map);
 
 /**********************CLEANING*************************/
 char	**free_map(char **tab, int nb_elem);
