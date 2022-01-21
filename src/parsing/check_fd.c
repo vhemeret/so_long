@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 19:42:11 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/20 02:39:00 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:06:23 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_fd(char *path_to_file)
 	}
 	if (!check_existing_file(path_to_file))
 	{
-		printf("/!\\ Le fichier n'esxiste pas.\n");
+		printf("/!\\ Le fichier n'existe pas.\n");
 		return (0);
 	}
 	if (!check_is_directory(path_to_file))

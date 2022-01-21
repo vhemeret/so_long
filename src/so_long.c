@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/20 02:37:22 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:24:08 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int main(int ac, char **av)
 {
 	if (!check_error(ac, av))
 		return (0);
+
 	return (0);
 }
