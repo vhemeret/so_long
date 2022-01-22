@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 01:53:02 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/21 21:47:55 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/21 23:14:19 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	map_is_rectangle(char **map)
 	return (1);
 }
 
-#include <stdio.h>
 int	check_map_border(char **map)
 {
 	int	len;
