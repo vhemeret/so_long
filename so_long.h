@@ -6,14 +6,14 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/23 00:44:10 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/23 19:09:34 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	SO_LONG_H
 # define SO_LONG_H
 
-# include "lib/minilibx_linux/mlx.h"
+# include "minilibx_linux/mlx.h"
 # include "src/get_next_line/get_next_line.h"
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -33,10 +33,11 @@
 
 typedef struct	s_data_img	// data image
 {
-	void	*img;
+	//void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }				t_data_img;
 
 typedef struct s_init // data initialisation mlx
