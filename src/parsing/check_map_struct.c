@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 01:53:02 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/21 23:14:19 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:55:46 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ int	check_map_struct(char **map)
 {
 	if (!unexpected_char(map))
 	{
-		printf("/!\\ Caractere invalide dans la map.\n");
+		printf("/!\\ Invalid character in map. /!\\\n");
 		return (0);
 	}
 	if (!map_is_rectangle(map))
 	{
-		printf("/!\\ La map n'est pas rectangle.\n");
+		printf("/!\\ The map is not rectangle. /!\\\n");
 		return (0);
 	}
 	if (!check_map_border(map))
 	{
-		printf("/!\\ Les bordures de la map ne sont pas valides.\n");
+		printf("/!\\ Map borders are invalid. /!\\\n");
 		return (0);
 	}
 	return (1);

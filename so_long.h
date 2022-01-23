@@ -6,14 +6,14 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/22 05:11:02 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/23 00:44:10 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	SO_LONG_H
 # define SO_LONG_H
 
-# include "minilibx_linux/mlx.h"
+# include "lib/minilibx_linux/mlx.h"
 # include "src/get_next_line/get_next_line.h"
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -26,9 +26,12 @@
 # define TEXTURE_COLLECTIBLE "assets/colletible.xpm"
 # define TEXTURE_FLOOR "assets/floor.xpm"
 # define TEXTURE_DOOR "assets/door.xpm"
-# define TEXTURE_PLAYER "assets/player.xpm"
+# define TEXTURE_PLAYER_FRONT "assets/player_front.xpm"
+# define TEXTURE_PLAYER_BACK "assets/player_back.xpm"
+# define TEXTURE_PLAYER_LEFT "assets/player_left.xpm"
+# define TEXTURE_PLAYER_RIGHT "assets/player_right.xpm"
 
-typedef struct	s_data_img
+typedef struct	s_data_img	// data image
 {
 	void	*img;
 	char	*addr;
@@ -36,20 +39,26 @@ typedef struct	s_data_img
 	int		line_lenght;
 }				t_data_img;
 
-typedef struct s_init
+typedef struct s_init // data initialisation mlx
 {
 	void	*mlx;
 	void	*window;
 	void	*img;
 }				t_init;
 
-typedef struct	s_data_map
+typedef struct	s_data_map // data map
 {
 	char	**map;
 	int		width;
 	int		height;
 }				t_data_map;
 
+typedef struct s_data_machine // machine
+{
+	t_data_map	*map;
+	t_data_img	*img;
+	t_init		*init;
+}				t_machine;
 
 /**********************PARSING*************************/
 char	**check_error(int ac, char **av);

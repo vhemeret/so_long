@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/22 05:39:37 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/23 00:44:14 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	init_mlx(t_data_map map)
 {
-	t_init	mlx;
+	t_machine	*machine;
 
-	mlx.mlx = mlx_init();
-	mlx.window = mlx_new_window(mlx.mlx, map.width * TEXTURE_WIDTH, map.height * TEXTURE_HEIGHT, "So_long");
-	mlx.img = mlx_new_image(mlx.mlx, map.width * TEXTURE_WIDTH, map.height * TEXTURE_HEIGHT);
-	if (!mlx.img)
+	machine->init->mlx = mlx_init();
+	machine->init->window = mlx_new_window(machine->init->mlx,
+		machine->map->width * TEXTURE_WIDTH,
+		machine->map->height * TEXTURE_HEIGHT, "So_long");
+	machine->init->img = mlx_new_image(machine->init->mlx,
+		machine->map->width * TEXTURE_WIDTH,
+		machine->map->height * TEXTURE_HEIGHT);
+	if (!machine->init->img)
 		return (0);
-	//mlx_put_image_to_window(mlx, window, img, 1, 1);
-	//mlx_loop(mlx);
+	load_texture(map);
 }
 
 int main(int ac, char **av)
