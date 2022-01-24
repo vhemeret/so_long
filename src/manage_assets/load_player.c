@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaning.c                                         :+:      :+:    :+:   */
+/*   load_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 17:20:24 by vahemere         ###   ########.fr       */
+/*   Created: 2022/01/24 17:47:11 by vahemere          #+#    #+#             */
+/*   Updated: 2022/01/24 17:49:20 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-char	**free_map(char **tab, int nb_elem)
+int	load_player(t_machine *data)
 {
-	int	i;
-
-	i = -1;
-	if (nb_elem)
-	{
-		while (++i <= nb_elem)
-		{
-			free(tab[i]);
-			tab[i] = NULL;
-		}
-	}
-	free(tab);
-	tab = NULL;
-	return (tab);
+	if (!load_player_front(data) || !load_player_back(data)
+		|| !load_player_left(data) || !load_player_right(data))
+		return (0);
+	return (1);
 }

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaning.c                                         :+:      :+:    :+:   */
+/*   load_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 17:20:24 by vahemere         ###   ########.fr       */
+/*   Created: 2022/01/24 17:33:38 by vahemere          #+#    #+#             */
+/*   Updated: 2022/01/24 17:50:49 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-char	**free_map(char **tab, int nb_elem)
+int	load_assets(t_machine *data)
 {
-	int	i;
-
-	i = -1;
-	if (nb_elem)
+	if (!load_player(data) || !load_floor(data)
+		|| !load_wall(data) || !load_collectable(data))
 	{
-		while (++i <= nb_elem)
-		{
-			free(tab[i]);
-			tab[i] = NULL;
-		}
+		printf("/!\\ Error when trying to import xpm to img /!\\\n");
+		return (0);
 	}
-	free(tab);
-	tab = NULL;
-	return (tab);
+	return (1);
 }

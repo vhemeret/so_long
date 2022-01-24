@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 22:56:01 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/23 20:07:49 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:20:11 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,23 @@ int	check_player(char **map)
 
 int	check_map_element(char **map)
 {
+	t_machine	*data;
+	
 	if (!check_collectible(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ The number of collectible is invalid. /!\\\n");
 		return (0);
 	}
 	if (!check_door(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ The number of exit is invalid. /!\\\n");
 		return (0);
 	}
 	if (!check_player(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ The number of player is invalid. /!\\\n");
 		return (0);
 	}

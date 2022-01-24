@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/23 20:07:48 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:31:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ void	init_mlx(t_machine *data)
 {
 	data->init->mlx = mlx_init();
 	if (!data->init->mlx)
-		// need to free mlx and map;
-	data->init->window = mlx_new_window(data->init->mlx,
+	{
+		free_map(map, data->map->height);
+		printf("/!\\ Error initialisation mlx /!\\\n");
+	}
+	data->element->move_count = 0;
+	load_assets(data);
+	/*data->init->window = mlx_new_window(data->init->mlx,
 		data->map->width * TEXTURE_WIDTH,
 		data->map->height * TEXTURE_HEIGHT, "So_long");
 	data->init->img = mlx_new_image(data->init->mlx,
@@ -28,7 +33,7 @@ void	init_mlx(t_machine *data)
 	&data->img->line_len, data->img->endian);
 	if (!data->init->img)
 		return (0);
-	//load_texture(map);
+	//load_texture(map);*/
 }
 
 int main(int ac, char **av)

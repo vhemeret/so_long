@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 01:53:02 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/23 19:46:31 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:20:15 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,23 @@ int	check_map_border(char **map)
 
 int	check_map_struct(char **map)
 {
+	t_machine *data;
+
 	if (!unexpected_char(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ Invalid character in map. /!\\\n");
 		return (0);
 	}
 	if (!map_is_rectangle(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ The map is not rectangle. /!\\\n");
 		return (0);
 	}
 	if (!check_map_border(map))
 	{
-		free_map(map, count_line(map));
+		free_map(map, data->map->height);
 		printf("/!\\ Map borders are invalid. /!\\\n");
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/23 19:09:34 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 18:03:16 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ typedef struct	s_data_img	// data image
 	int		endian;
 }				t_data_img;
 
+typedef struct	s_data_element // data element map
+{
+	int		move_count;
+	int		width;
+	int		height;
+	void	*player;
+	void	*wall;
+	void	*floor;
+	void	*collectable;
+	void	*door;
+}				t_data_element;
+
+
 typedef struct s_init // data initialisation mlx
 {
 	void	*mlx;
@@ -56,9 +69,10 @@ typedef struct	s_data_map // data map
 
 typedef struct s_data_machine // machine
 {
-	t_data_map	*map;
-	t_data_img	*img;
-	t_init		*init;
+	t_data_map		*map;
+	t_data_img		*img;
+	t_init			*init;
+	t_data_element	*element;
 }				t_machine;
 
 /**********************PARSING*************************/
@@ -82,5 +96,12 @@ int		check_map_element(char **map);
 
 /**********************CLEANING*************************/
 char	**free_map(char **tab, int nb_elem);
+
+/**********************MLX_INIT*************************/
+int		init_mlx(t_machine *data);
+
+/*	ASSETS	*/
+int		load_assets(t_machine *data);
+
 
 #endif
