@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 18:03:16 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:28:28 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "minilibx_linux/mlx.h"
 # include "src/get_next_line/get_next_line.h"
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -33,7 +31,7 @@
 
 typedef struct	s_data_img	// data image
 {
-	//void	*img;
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
@@ -43,9 +41,13 @@ typedef struct	s_data_img	// data image
 typedef struct	s_data_element // data element map
 {
 	int		move_count;
+	int		nb_collectable;
 	int		width;
 	int		height;
-	void	*player;
+	void	*player_front;
+	void	*player_back;
+	void	*player_left;
+	void	*player_right;
 	void	*wall;
 	void	*floor;
 	void	*collectable;
@@ -57,7 +59,6 @@ typedef struct s_init // data initialisation mlx
 {
 	void	*mlx;
 	void	*window;
-	void	*img;
 }				t_init;
 
 typedef struct	s_data_map // data map
@@ -102,6 +103,7 @@ int		init_mlx(t_machine *data);
 
 /*	ASSETS	*/
 int		load_assets(t_machine *data);
+int		load_player(t_machine *data);
 
 
 #endif

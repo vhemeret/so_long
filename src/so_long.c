@@ -6,34 +6,43 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 17:31:33 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/24 23:50:26 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	init_mlx(t_machine *data)
+int	init_mlx(t_machine *data)
 {
 	data->init->mlx = mlx_init();
 	if (!data->init->mlx)
 	{
-		free_map(map, data->map->height);
+		free_map(data->map->map, data->map->height);
 		printf("/!\\ Error initialisation mlx /!\\\n");
-	}
-	data->element->move_count = 0;
-	load_assets(data);
-	/*data->init->window = mlx_new_window(data->init->mlx,
-		data->map->width * TEXTURE_WIDTH,
-		data->map->height * TEXTURE_HEIGHT, "So_long");
-	data->init->img = mlx_new_image(data->init->mlx,
-		data->map->width * TEXTURE_WIDTH,
-		data->map->height * TEXTURE_HEIGHT);
-	data->img->addr = mlx_get_data_addr(data->init->img,
-	&data->img->bpp,
-	&data->img->line_len, data->img->endian);
-	if (!data->init->img)
 		return (0);
-	//load_texture(map);*/
+	}
+	if (!load_assets(data))
+		return (0); //pensez a free dans load_assets.c
+	data->init->window = mlx_new_window(data->init->mlx,
+		data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT,
+		"So_long");
+	if (!data->init->window)
+	{
+		free_map(data->map->map, data->map->height);
+		//free mlx
+		printf("/!\\ Error initialisation window /!\\\n");
+		return (0);
+	}
+	data->img->img = mlx_new_image(data->init->mlx,
+	data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT);
+	if (!data->img->img)
+	{
+		free_map(data->map->map, data->map->height);
+		//free mlx & window
+		printf("/!\\ Error initialisation window /!\\\n");
+		return (0);
+	}
+	return (1);
 }
 
 int main(int ac, char **av)
@@ -43,6 +52,9 @@ int main(int ac, char **av)
 	data->map->map = check_error(ac, av);
 	if (!data->map->map)
 		return (0);
-	init_mlx(data);
+	if (!init_mlx(data))
+		return (0);
+	data->element->move_count = 0;
+	pixel_dabbing(data); // a creer
 	return (0);
 }
