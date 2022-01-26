@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:33:38 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 01:46:20 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:16:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int	load_assets(t_machine *data)
 {
 	if (!load_player(data) || !load_floor(data)
 		|| !load_wall(data) || !load_collectable(data) || !load_door(data))
-	{
-		// ne pas oublier de free en cas de pb.
-		printf("/!\\ Error when trying to load xpm to img /!\\\n");
 		return (0);
-	}
 	return (1);
 }

@@ -6,23 +6,20 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 01:43:13 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:42:11 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-unsigned int	get_pixel(void *img, int x, int y)
+unsigned int	get_pixel(t_machine *data, void *img, int x, int y)
 {
 	char			*src;
-	t_data_img		*tmp;
 	unsigned int	color;
 
-	tmp = malloc(sizeof(t_data_img));
-	if (!tmp)
-		return (0);
-	tmp->addr = mlx_get_data_addr(img, &tmp->bpp, &tmp->line_len, &tmp->endian);
-	src = tmp->addr + (y * tmp->line_len + x * (tmp->bpp / 8));
+	data->tmp->addr = mlx_get_data_addr(img, &data->tmp->bpp,
+		&data->tmp->line_len, &data->tmp->endian);
+	src = data->tmp->addr + (y * data->tmp->line_len + x * (data->tmp->bpp / 8));
 	color = *(unsigned int *)src;
 	return (color);
 }
@@ -46,7 +43,7 @@ void	dabbing_element(t_machine *data, void *img, int x, int y)
 		x_count = -1;
 		while (++x_count < TEXTURE_HEIGHT)
 		{
-			data->element->color = get_pixel(img, x_count, y_count);
+			data->element->color = get_pixel(data, img, x_count, y_count);
 			if (!(data->element->color == (0xFF << 24)))
 				my_mlx_pixel_put(data, (x * TEXTURE_WIDTH) + x_count,
 					(y * TEXTURE_HEIGHT) + y_count, data->element->color);
@@ -78,5 +75,5 @@ void	pixel_dabbing(t_machine *data)
 	}
 	mlx_put_image_to_window(data->init->mlx, data->init->window,
 	data->img->img, 0, 0);
-	mlx_loop(data->init->mlx);
+	//mlx_loop(data->init->mlx);
 }

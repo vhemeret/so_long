@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 00:42:01 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/26 19:34:53 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ typedef struct s_data_machine // machine
 {
 	t_data_map		*map;
 	t_data_img		*img;
+	t_data_img		*tmp;
 	t_init			*init;
 	t_data_element	*element;
 }				t_machine;
 
 /**********************PARSING*************************/
-void	check_error(int ac, char **av, t_machine *data);
+int	check_error(int ac, char **av, t_machine *data);
 
 /*	PARSING UTILS	*/
 int		count_line(char *path_to_file);
@@ -93,11 +94,16 @@ int		check_existing_file(char *path_to_file);
 int		check_name_file(char *path_to_file);
 
 /*	PARSING MAP		*/
-int		check_map_struct(char **map, t_machine *data);
-int		check_map_element(char **map, t_machine *data);
+int		check_map_struct(t_machine *data);
+int		check_map_element(t_machine *data);
+
+/**********************STRUCT***************************/
+t_machine	*manage_malloc_struct(void);
 
 /**********************CLEANING*************************/
 char	**free_map(char **tab, int nb_elem);
+void	free_struct(t_machine *data);
+void	free_all(char *str, t_machine *data);
 
 /**********************MLX_INIT*************************/
 int		init_mlx(t_machine *data);
