@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 22:28:28 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/26 00:42:01 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WALL "assets/wall.xpm"
-# define TEXTURE_COLLECTIBLE "assets/colletible.xpm"
+# define TEXTURE_COLLECTIBLE "assets/collectible.xpm"
 # define TEXTURE_FLOOR "assets/floor.xpm"
 # define TEXTURE_DOOR "assets/door.xpm"
 # define TEXTURE_PLAYER_FRONT "assets/player_front.xpm"
@@ -44,6 +44,7 @@ typedef struct	s_data_element // data element map
 	int		nb_collectable;
 	int		width;
 	int		height;
+	int	color;
 	void	*player_front;
 	void	*player_back;
 	void	*player_left;
@@ -77,12 +78,12 @@ typedef struct s_data_machine // machine
 }				t_machine;
 
 /**********************PARSING*************************/
-char	**check_error(int ac, char **av);
+void	check_error(int ac, char **av, t_machine *data);
 
 /*	PARSING UTILS	*/
 int		count_line(char *path_to_file);
 char	**import_map_to_tab(char *path_to_file);
-int		ft_strline(char *str);
+int		ft_strline(char *str, t_machine *data);
 
 /*	PARSING FILE	*/
 int		check_fd(char *path_to_file);
@@ -92,8 +93,8 @@ int		check_existing_file(char *path_to_file);
 int		check_name_file(char *path_to_file);
 
 /*	PARSING MAP		*/
-int		check_map_struct(char **map);
-int		check_map_element(char **map);
+int		check_map_struct(char **map, t_machine *data);
+int		check_map_element(char **map, t_machine *data);
 
 /**********************CLEANING*************************/
 char	**free_map(char **tab, int nb_elem);
@@ -104,6 +105,9 @@ int		init_mlx(t_machine *data);
 /*	ASSETS	*/
 int		load_assets(t_machine *data);
 int		load_player(t_machine *data);
+
+/**********************PIXEL_DABBING*********************/
+void	pixel_dabbing(t_machine *data);
 
 
 #endif

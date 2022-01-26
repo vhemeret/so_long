@@ -6,19 +6,20 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:43:20 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 17:20:19 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/26 00:39:43 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	ft_strline(char *str)
+int	ft_strline(char *str, t_machine *data)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] != '\n' && str[i])
 		i++;
+	data->map->width = i;
 	return (i);
 }
 

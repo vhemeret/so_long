@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 22:56:01 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 17:20:11 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/25 20:55:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ int	check_player(char **map)
 	return (1);
 }
 
-int	check_map_element(char **map)
+int	check_map_element(char **map, t_machine *data)
 {
-	t_machine	*data;
 	
 	if (!check_collectible(map))
 	{

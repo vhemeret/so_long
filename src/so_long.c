@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/24 23:50:26 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/25 22:06:26 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	init_mlx(t_machine *data)
 		printf("/!\\ Error initialisation window /!\\\n");
 		return (0);
 	}
+	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
+		&data->img->line_len, &data->img->endian);
 	return (1);
 }
 
@@ -49,12 +51,19 @@ int main(int ac, char **av)
 {
 	t_machine	*data;
 
-	data->map->map = check_error(ac, av);
+	data = malloc(sizeof(*data));
+	data->map = malloc(sizeof(t_data_map));
+	data->init = malloc(sizeof(t_init));
+	data->img = malloc(sizeof(t_data_img));
+	data->element = malloc(sizeof(t_data_element));
+	if (!data)
+		return (0);
+	check_error(ac, av, data);
 	if (!data->map->map)
 		return (0);
 	if (!init_mlx(data))
 		return (0);
 	data->element->move_count = 0;
-	pixel_dabbing(data); // a creer
+	pixel_dabbing(data);
 	return (0);
 }
