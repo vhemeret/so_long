@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 19:12:56 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:39:41 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void	free_img(t_machine *data)
 		mlx_destroy_image(data->init->mlx, data->element->player_right);
 }
 
-void	free_all(char *str, t_machine *data)
+int	free_all(char *str, t_machine *data)
 {
-	printf("%s\n", str);
+	if (str)
+		printf("%s\n", str);
 	free_img(data);
 	if (data->init->window)
 	{
@@ -72,7 +73,11 @@ void	free_all(char *str, t_machine *data)
 		mlx_destroy_window(data->init->mlx, data->init->window);
 	}
 	if (data->init->mlx)
+	{
 		mlx_destroy_display(data->init->mlx);
+		free(data->init->mlx);
+	}
 	free_map(data->map->map, data->map->height);
 	free_struct(data);
+	return (0);
 }

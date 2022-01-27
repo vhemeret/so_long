@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 19:34:53 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:55:00 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
+
 # define TEXTURE_WALL "assets/wall.xpm"
 # define TEXTURE_COLLECTIBLE "assets/collectible.xpm"
 # define TEXTURE_FLOOR "assets/floor.xpm"
@@ -28,6 +29,26 @@
 # define TEXTURE_PLAYER_BACK "assets/player_back.xpm"
 # define TEXTURE_PLAYER_LEFT "assets/player_left.xpm"
 # define TEXTURE_PLAYER_RIGHT "assets/player_right.xpm"
+
+# define WALL '1'
+# define FLOOR '0'
+# define DOOR 'E'
+# define COLLECTIBLE 'C'
+# define PLAYER 'P'
+
+# define POS_FRONT 1
+# define POS_BACK 2
+# define POS_LEFT 3
+# define POS_RIGHT 4
+
+typedef enum	e_keynum
+{
+	ESC = 65307,
+	UP = 119,
+	DOWN = 115,
+	LEFT = 97,
+	RIGHT = 100,
+}				t_keynum;
 
 typedef struct	s_data_img	// data image
 {
@@ -44,7 +65,9 @@ typedef struct	s_data_element // data element map
 	int		nb_collectable;
 	int		width;
 	int		height;
-	int	color;
+	int		color;
+	int		pos_x;
+	int		pos_y;
 	void	*player_front;
 	void	*player_back;
 	void	*player_left;
@@ -103,7 +126,7 @@ t_machine	*manage_malloc_struct(void);
 /**********************CLEANING*************************/
 char	**free_map(char **tab, int nb_elem);
 void	free_struct(t_machine *data);
-void	free_all(char *str, t_machine *data);
+int		free_all(char *str, t_machine *data);
 
 /**********************MLX_INIT*************************/
 int		init_mlx(t_machine *data);
@@ -113,7 +136,12 @@ int		load_assets(t_machine *data);
 int		load_player(t_machine *data);
 
 /**********************PIXEL_DABBING*********************/
-void	pixel_dabbing(t_machine *data);
+void	pixel_dabbing(t_machine *data, int poition);
+
+/**********************MANAGE_HOOK***********************/
+int		manage_hook(int keynum, t_machine *data);
+void	pos_player(t_machine *data);
+int		data_hook(t_machine *data);
 
 
 #endif

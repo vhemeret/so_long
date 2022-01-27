@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 21:05:18 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:55:37 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,19 @@ int	init_mlx(t_machine *data)
 {
 	data->init->mlx = mlx_init();
 	if (!data->init->mlx)
-	{
-		free_all("/!\\ Error initialisation mlx /!\\", data);
-		return (0);
-	}
+		return (free_all("/!\\ Error initialisation mlx /!\\", data));
 	if (!load_assets(data))
-	{
-		free_all("/!\\ Error when trying to load xpm to img /!\\", data);
-		return (0);
-	}
+		return (free_all("/!\\ Error when trying to load xpm to img /!\\",
+		data));
 	data->init->window = mlx_new_window(data->init->mlx,
 		data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT,
 		"So_long");
 	if (!data->init->window)
-	{
-		free_all("/!\\ Error initialisation window /!\\", data);
-		return (0);
-	}
+		return (free_all("/!\\ Error initialisation window /!\\", data));
 	data->img->img = mlx_new_image(data->init->mlx,
 	data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT);
 	if (!data->img->img)
-	{
-		free_all("/!\\ Error initialisation window /!\\", data);
-		return (0);
-	}
+		return (free_all("/!\\ Error initialisation window /!\\", data));
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 		&data->img->line_len, &data->img->endian);
 	return (1);
@@ -58,14 +47,12 @@ int main(int ac, char **av)
 		return (0);
 	}
 	if (!init_mlx(data))
-	{
-		printf("ici\n");
-		//free_struct(data);
-		mlx_destroy_display(data->init->mlx);
 		return (0);
-	}
 	data->element->move_count = 0;
-	pixel_dabbing(data);
-	free_all("free\n", data);
+	pos_player(data);
+	pixel_dabbing(data, POS_FRONT);
+	mlx_key_hook(data->init->window, manage_hook, data);
+	mlx_loop(data->init->mlx);
+	free_all(NULL, data);
 	return (0);
 }

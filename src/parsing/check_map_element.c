@@ -6,17 +6,18 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 22:56:01 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 19:37:30 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:42:41 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	check_collectible(char **map)
+void	count_collectible(char **map, t_machine *data)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
+	data->element->nb_collectable = 0;
 	i = -1;
 	while (map[++i])
 	{
@@ -24,7 +25,30 @@ int	check_collectible(char **map)
 		while (map[i][++j])
 		{
 			if (map[i][j] == 'C')
+			{
+				data->element->nb_collectable++;
+			}
+		}
+	}
+}
+
+int	check_collectible(char **map, t_machine *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	data->element->nb_collectable = 0;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'C')
+			{
+				count_collectible(map, data);
 				return (1);
+			}
 		}
 	}
 	return (0);
@@ -73,7 +97,7 @@ int	check_player(char **map)
 int	check_map_element(t_machine *data)
 {
 	
-	if (!check_collectible(data->map->map))
+	if (!check_collectible(data->map->map, data))
 	{
 		free_map(data->map->map, data->map->height);
 		printf("/!\\ The number of collectible is invalid. /!\\\n");

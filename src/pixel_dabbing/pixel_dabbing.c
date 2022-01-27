@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 19:42:11 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/27 18:59:55 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,19 @@ void	dabbing_element(t_machine *data, void *img, int x, int y)
 	}
 }
 
-void	pixel_dabbing(t_machine *data)
+void	check_position(int position, t_machine *data)
+{
+	if (position == POS_FRONT)
+		dabbing_element(data, data->element->player_front, data->element->pos_x, data->element->pos_y);
+	else if (position == POS_BACK)
+		dabbing_element(data, data->element->player_back, data->element->pos_x, data->element->pos_y);
+	else if (position == POS_LEFT)
+		dabbing_element(data, data->element->player_left, data->element->pos_x, data->element->pos_y);
+	else if (position == POS_RIGHT)
+		dabbing_element(data, data->element->player_right, data->element->pos_x, data->element->pos_y);
+}
+
+void	pixel_dabbing(t_machine *data, int position)
 {
 	int	x;
 	int	y;
@@ -69,11 +81,9 @@ void	pixel_dabbing(t_machine *data)
 				dabbing_element(data, data->element->collectable, x, y);
 			if (data->map->map[y][x] == 'E')
 				dabbing_element(data, data->element->door, x, y);
-			if (data->map->map[y][x] == 'P')
-				dabbing_element(data, data->element->player_front, x, y);
 		}
 	}
+	check_position(position, data);
 	mlx_put_image_to_window(data->init->mlx, data->init->window,
 	data->img->img, 0, 0);
-	//mlx_loop(data->init->mlx);
 }
