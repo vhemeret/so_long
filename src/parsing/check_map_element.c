@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 22:56:01 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 18:42:41 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:10:09 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	count_collectible(char **map, t_machine *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	data->element->nb_collectable = 0;
 	i = -1;
@@ -96,23 +96,22 @@ int	check_player(char **map)
 
 int	check_map_element(t_machine *data)
 {
-	
 	if (!check_collectible(data->map->map, data))
 	{
 		free_map(data->map->map, data->map->height);
-		printf("/!\\ The number of collectible is invalid. /!\\\n");
+		printf("Error\n/!\\ The number of collectible is invalid. /!\\\n");
 		return (0);
 	}
 	if (!check_door(data->map->map))
 	{
 		free_map(data->map->map, data->map->height);
-		printf("/!\\ The number of exit is invalid. /!\\\n");
+		printf("Error\n/!\\ The number of exit is invalid. /!\\\n");
 		return (0);
 	}
 	if (!check_player(data->map->map))
 	{
 		free_map(data->map->map, data->map->height);
-		printf("/!\\ The number of player is invalid. /!\\\n");
+		printf("Error\n/!\\ The number of player is invalid. /!\\\n");
 		return (0);
 	}
 	return (1);

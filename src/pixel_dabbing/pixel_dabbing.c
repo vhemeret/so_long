@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 18:59:55 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:18:41 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ unsigned int	get_pixel(t_machine *data, void *img, int x, int y)
 	unsigned int	color;
 
 	data->tmp->addr = mlx_get_data_addr(img, &data->tmp->bpp,
-		&data->tmp->line_len, &data->tmp->endian);
-	src = data->tmp->addr + (y * data->tmp->line_len + x * (data->tmp->bpp / 8));
+			&data->tmp->line_len, &data->tmp->endian);
+	src = data->tmp->addr
+		+ (y * data->tmp->line_len + x * (data->tmp->bpp / 8));
 	color = *(unsigned int *)src;
 	return (color);
 }
@@ -28,8 +29,9 @@ void	my_mlx_pixel_put(t_machine *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->img->addr + (y * data->img->line_len + x * (data->img->bpp / 8));
-	*(unsigned int*)dst = color;
+	dst = data->img->addr
+		+ (y * data->img->line_len + x * (data->img->bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	dabbing_element(t_machine *data, void *img, int x, int y)
@@ -54,16 +56,20 @@ void	dabbing_element(t_machine *data, void *img, int x, int y)
 void	check_position(int position, t_machine *data)
 {
 	if (position == POS_FRONT)
-		dabbing_element(data, data->element->player_front, data->element->pos_x, data->element->pos_y);
+		dabbing_element(data, data->element->player_front,
+			data->element->pos_x, data->element->pos_y);
 	else if (position == POS_BACK)
-		dabbing_element(data, data->element->player_back, data->element->pos_x, data->element->pos_y);
+		dabbing_element(data, data->element->player_back,
+			data->element->pos_x, data->element->pos_y);
 	else if (position == POS_LEFT)
-		dabbing_element(data, data->element->player_left, data->element->pos_x, data->element->pos_y);
+		dabbing_element(data, data->element->player_left,
+			data->element->pos_x, data->element->pos_y);
 	else if (position == POS_RIGHT)
-		dabbing_element(data, data->element->player_right, data->element->pos_x, data->element->pos_y);
+		dabbing_element(data, data->element->player_right,
+			data->element->pos_x, data->element->pos_y);
 }
 
-void	pixel_dabbing(t_machine *data, int position)
+int	pixel_dabbing(t_machine *data, int position)
 {
 	int	x;
 	int	y;
@@ -85,5 +91,6 @@ void	pixel_dabbing(t_machine *data, int position)
 	}
 	check_position(position, data);
 	mlx_put_image_to_window(data->init->mlx, data->init->window,
-	data->img->img, 0, 0);
+		data->img->img, 0, 0);
+	return (0);
 }

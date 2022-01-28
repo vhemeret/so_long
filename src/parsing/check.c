@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:30:22 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 19:35:32 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 15:57:20 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_error(int ac, char **av, t_machine *data)
 {
 	if (ac != 2)
 	{
-		printf("/!\\The numbers of arguments are invalid./!\\\n");
+		printf("Error\n/!\\ The numbers of arguments are invalid. /!\\\n");
 		return (0);
 	}
 	if (!check_fd(av[1]))

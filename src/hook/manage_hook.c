@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 20:29:23 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:08:09 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	check_moove(int pos_y, int pos_x, t_machine *data)
 	if (data->map->map[pos_y][pos_x] == DOOR
 		&& data->element->nb_collectable != 0)
 		return (0);
-	else if (data->map->map[pos_y][pos_x] == DOOR && data->element->nb_collectable == 0)
+	else if (data->map->map[pos_y][pos_x] == DOOR
+		&& data->element->nb_collectable == 0)
 	{
 		mlx_loop_end(data->init->mlx);
 	}
@@ -48,7 +49,6 @@ int	check_moove(int pos_y, int pos_x, t_machine *data)
 	{
 		data->map->map[pos_y][pos_x] = FLOOR;
 		data->element->nb_collectable--;
-		printf("%i\n", data->element->nb_collectable);
 	}
 	data->element->move_count++;
 	return (1);

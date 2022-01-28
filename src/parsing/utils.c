@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:43:20 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/26 00:39:43 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:11:04 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**import_map_to_tab(char *path_to_file)
 
 	line = "";
 	nb_line = count_line(path_to_file);
-	map = malloc(sizeof(char*) * (nb_line + 1));
+	map = malloc(sizeof(char *) * (nb_line + 1));
 	if (!map)
 		return (NULL);
 	fd = open(path_to_file, O_RDONLY);

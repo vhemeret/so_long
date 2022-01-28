@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 12:39:41 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 17:32:29 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	free_img(t_machine *data)
 		mlx_destroy_image(data->init->mlx, data->element->player_left);
 	if (data->element->player_right)
 		mlx_destroy_image(data->init->mlx, data->element->player_right);
+}
+
+int	destroy_notify(t_machine *data)
+{
+	mlx_loop_end(data->init->mlx);
+	return (0);
 }
 
 int	free_all(char *str, t_machine *data)

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 18:55:00 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:08:06 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 # define POS_BACK 2
 # define POS_LEFT 3
 # define POS_RIGHT 4
+
+# define INIT 1
+# define LOOP 0
 
 typedef enum	e_keynum
 {
@@ -127,6 +130,7 @@ t_machine	*manage_malloc_struct(void);
 char	**free_map(char **tab, int nb_elem);
 void	free_struct(t_machine *data);
 int		free_all(char *str, t_machine *data);
+int		destroy_notify(t_machine *data);
 
 /**********************MLX_INIT*************************/
 int		init_mlx(t_machine *data);
@@ -136,7 +140,8 @@ int		load_assets(t_machine *data);
 int		load_player(t_machine *data);
 
 /**********************PIXEL_DABBING*********************/
-void	pixel_dabbing(t_machine *data, int poition);
+int		pixel_dabbing(t_machine *data, int poition);
+void	dabbing_element(t_machine *data, void *img, int x, int y);
 
 /**********************MANAGE_HOOK***********************/
 int		manage_hook(int keynum, t_machine *data);

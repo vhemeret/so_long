@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 19:42:11 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/22 04:36:56 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 16:09:28 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	check_name_file(char *path_to_file)
 		|| path_to_file[i - 3] != 'b' || path_to_file[i - 4] != '.')
 		return (0);
 	else
-		return (1); 
+		return (1);
 }
 
 int	check_existing_file(char *path_to_file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(path_to_file, O_RDONLY);
 	if (fd == -1)
@@ -63,22 +63,22 @@ int	check_fd(char *path_to_file)
 {
 	if (!check_name_file(path_to_file))
 	{
-		printf("/!\\ Wrong file name. /!\\\n");
+		printf("Error\n/!\\ Wrong file name. /!\\\n");
 		return (0);
 	}
 	if (!check_existing_file(path_to_file))
 	{
-		printf("/!\\ File does not exist. /!\\\n");
+		printf("Error\n/!\\ File does not exist. /!\\\n");
 		return (0);
 	}
 	if (!check_is_directory(path_to_file))
 	{
-		printf("/!\\ Is not a file. Is a directory. /!\\\n");
+		printf("Error\n/!\\ Is not a file. Is a directory. /!\\\n");
 		return (0);
 	}
 	if (!check_is_symbolic_link(path_to_file))
 	{
-		printf("/!\\ Is not a file. Is a symbolic link. /!\\\n");
+		printf("Error\n/!\\ Is not a file. Is a symbolic link. /!\\\n");
 		return (0);
 	}
 	return (1);

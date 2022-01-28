@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/27 18:55:37 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/28 19:12:59 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ int	init_mlx(t_machine *data)
 {
 	data->init->mlx = mlx_init();
 	if (!data->init->mlx)
-		return (free_all("/!\\ Error initialisation mlx /!\\", data));
+		return (free_all("Error\n/!\\ initialisation mlx /!\\", data));
 	if (!load_assets(data))
-		return (free_all("/!\\ Error when trying to load xpm to img /!\\",
-		data));
+		return (free_all("Error\n/!\\when trying to load xpm to img /!\\",
+				data));
 	data->init->window = mlx_new_window(data->init->mlx,
-		data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT,
-		"So_long");
+			data->map->width * TEXTURE_WIDTH,
+			data->map->height * TEXTURE_HEIGHT, "So_long");
 	if (!data->init->window)
-		return (free_all("/!\\ Error initialisation window /!\\", data));
+		return (free_all("Error\n/!\\ initialisation window /!\\", data));
 	data->img->img = mlx_new_image(data->init->mlx,
-	data->map->width * TEXTURE_WIDTH, data->map->height * TEXTURE_HEIGHT);
+			data->map->width * TEXTURE_WIDTH,
+			data->map->height * TEXTURE_HEIGHT);
 	if (!data->img->img)
-		return (free_all("/!\\ Error initialisation window /!\\", data));
+		return (free_all("Error\n/!\\ initialisation window /!\\", data));
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
-		&data->img->line_len, &data->img->endian);
+			&data->img->line_len, &data->img->endian);
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_machine	*data;
 
@@ -51,7 +52,10 @@ int main(int ac, char **av)
 	data->element->move_count = 0;
 	pos_player(data);
 	pixel_dabbing(data, POS_FRONT);
+	// mlx_hook(data->init->window, 17, 0, free_destroy_notify, data);
+	// mlx_hook(data->init->window, 2, (1L<<0), manage_hook, data);
 	mlx_key_hook(data->init->window, manage_hook, data);
+	mlx_hook(data->init->window, 17, (1L << 5), destroy_notify, data);
 	mlx_loop(data->init->mlx);
 	free_all(NULL, data);
 	return (0);
