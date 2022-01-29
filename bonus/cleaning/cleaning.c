@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:40:34 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:32:58 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,16 @@ void	free_img(t_machine *data)
 {
 	if (data->img->img)
 		mlx_destroy_image(data->init->mlx, data->img->img);
-	if (data->element->collectable)
-		mlx_destroy_image(data->init->mlx, data->element->collectable);
+	if (data->element->coin1)
+		mlx_destroy_image(data->init->mlx, data->element->coin1);
+	if (data->element->coin2)
+		mlx_destroy_image(data->init->mlx, data->element->coin2);
+	if (data->element->coin3)
+		mlx_destroy_image(data->init->mlx, data->element->coin3);
+	if (data->element->coin4)
+		mlx_destroy_image(data->init->mlx, data->element->coin4);
+	if (data->element->coin5)
+		mlx_destroy_image(data->init->mlx, data->element->coin5);
 	if (data->element->floor)
 		mlx_destroy_image(data->init->mlx, data->element->floor);
 	if (data->element->wall)

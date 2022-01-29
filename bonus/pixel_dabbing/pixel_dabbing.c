@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:58:28 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:49:27 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	pixel_dabbing(t_machine *data, int position)
 			if (data->map->map[y][x] == '1')
 				dabbing_element(data, data->element->wall, x, y);
 			if (data->map->map[y][x] == 'C')
-				dabbing_element(data, data->element->collectable, x, y);
+				manage_coin(data, x, y);
 			if (data->map->map[y][x] == 'E')
 				dabbing_element(data, data->element->door, x, y);
 		}

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/28 19:08:06 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:33:29 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
 
+/*	PATH TEXTURE MANDATORY PART */
 # define TEXTURE_WALL "assets/wall.xpm"
 # define TEXTURE_COLLECTIBLE "assets/collectible.xpm"
 # define TEXTURE_FLOOR "assets/floor.xpm"
@@ -29,6 +30,13 @@
 # define TEXTURE_PLAYER_BACK "assets/player_back.xpm"
 # define TEXTURE_PLAYER_LEFT "assets/player_left.xpm"
 # define TEXTURE_PLAYER_RIGHT "assets/player_right.xpm"
+
+/*	PATH TEXTURE BONUS PART */
+# define TEXTURE_COIN1 "assets/bonus/coin1.xpm"
+# define TEXTURE_COIN2 "assets/bonus/coin2.xpm"
+# define TEXTURE_COIN3 "assets/bonus/coin3.xpm"
+# define TEXTURE_COIN4 "assets/bonus/coin4.xpm"
+# define TEXTURE_COIN5 "assets/bonus/coin5.xpm"
 
 # define WALL '1'
 # define FLOOR '0'
@@ -41,9 +49,6 @@
 # define POS_LEFT 3
 # define POS_RIGHT 4
 
-# define INIT 1
-# define LOOP 0
-
 typedef enum	e_keynum
 {
 	ESC = 65307,
@@ -53,7 +58,11 @@ typedef enum	e_keynum
 	RIGHT = 100,
 }				t_keynum;
 
-typedef struct	s_data_img	// data image
+
+/**********************STRUCT*************************/
+
+/*	DATA IMG */
+typedef struct	s_data_img
 {
 	void	*img;
 	char	*addr;
@@ -62,7 +71,8 @@ typedef struct	s_data_img	// data image
 	int		endian;
 }				t_data_img;
 
-typedef struct	s_data_element // data element map
+/*	DATA ELEMENT MAP */
+typedef struct	s_data_element
 {
 	int		move_count;
 	int		nb_collectable;
@@ -75,27 +85,35 @@ typedef struct	s_data_element // data element map
 	void	*player_back;
 	void	*player_left;
 	void	*player_right;
+	void	*coin1;
+	void	*coin2;
+	void	*coin3;
+	void	*coin4;
+	void	*coin5;
 	void	*wall;
 	void	*floor;
 	void	*collectable;
 	void	*door;
 }				t_data_element;
 
-
-typedef struct s_init // data initialisation mlx
+/*	DATA SETTING MLX*/
+typedef struct s_init
 {
 	void	*mlx;
 	void	*window;
 }				t_init;
 
-typedef struct	s_data_map // data map
+/*	DATA MAP */
+typedef struct	s_data_map
 {
 	char	**map;
 	int		width;
 	int		height;
 }				t_data_map;
 
-typedef struct s_data_machine // machine
+
+/*	MACHINE	*/
+typedef struct s_data_machine
 {
 	t_data_map		*map;
 	t_data_img		*img;
@@ -103,6 +121,8 @@ typedef struct s_data_machine // machine
 	t_init			*init;
 	t_data_element	*element;
 }				t_machine;
+
+/******************************************************/
 
 /**********************PARSING*************************/
 int	check_error(int ac, char **av, t_machine *data);
@@ -148,5 +168,8 @@ int		manage_hook(int keynum, t_machine *data);
 void	pos_player(t_machine *data);
 int		data_hook(t_machine *data);
 
+
+/**********************BONUS_PART************************/
+void	manage_coin(t_machine *data, int x, int y);
 
 #endif

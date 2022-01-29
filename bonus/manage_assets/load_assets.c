@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:33:38 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:36:08 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/29 20:52:31 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,27 @@ int	load_door(t_machine *data)
 	return (1);
 }
 
-int	load_collectable(t_machine *data)
+int	load_coin(t_machine *data)
 {
-	data->element->collectable = mlx_xpm_file_to_image(data->init->mlx,
-			TEXTURE_COLLECTIBLE, &data->element->width, &data->element->height);
-	if (!data->element->collectable)
+	data->element->coin1 = mlx_xpm_file_to_image(data->init->mlx,
+			TEXTURE_COIN1, &data->element->width, &data->element->height);
+	if (!data->element->coin1)
+		return (0);
+			data->element->coin1 = mlx_xpm_file_to_image(data->init->mlx,
+			TEXTURE_COIN2, &data->element->width, &data->element->height);
+	if (!data->element->coin2)
+		return (0);
+			data->element->coin1 = mlx_xpm_file_to_image(data->init->mlx,
+			TEXTURE_COIN3, &data->element->width, &data->element->height);
+	if (!data->element->coin3)
+		return (0);
+			data->element->coin1 = mlx_xpm_file_to_image(data->init->mlx,
+			TEXTURE_COIN4, &data->element->width, &data->element->height);
+	if (!data->element->coin4)
+		return (0);
+			data->element->coin1 = mlx_xpm_file_to_image(data->init->mlx,
+			TEXTURE_COIN5, &data->element->width, &data->element->height);
+	if (!data->element->coin5)
 		return (0);
 	return (1);
 }
@@ -51,7 +67,7 @@ int	load_collectable(t_machine *data)
 int	load_assets(t_machine *data)
 {
 	if (!load_player(data) || !load_floor(data)
-		|| !load_wall(data) || !load_collectable(data) || !load_door(data))
+		|| !load_wall(data) || !load_coin(data) || !load_door(data))
 		return (0);
 	return (1);
 }
