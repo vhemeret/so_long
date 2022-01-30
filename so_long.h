@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:33:29 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/30 21:13:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "src/get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <time.h>
 
 # define TEXTURE_WIDTH 64
 # define TEXTURE_HEIGHT 64
@@ -32,17 +33,23 @@
 # define TEXTURE_PLAYER_RIGHT "assets/player_right.xpm"
 
 /*	PATH TEXTURE BONUS PART */
-# define TEXTURE_COIN1 "assets/bonus/coin1.xpm"
-# define TEXTURE_COIN2 "assets/bonus/coin2.xpm"
-# define TEXTURE_COIN3 "assets/bonus/coin3.xpm"
-# define TEXTURE_COIN4 "assets/bonus/coin4.xpm"
-# define TEXTURE_COIN5 "assets/bonus/coin5.xpm"
+# define TEXTURE_COIN1	"assets/bonus/coin1.xpm"
+# define TEXTURE_COIN2	"assets/bonus/coin2.xpm"
+# define TEXTURE_COIN3	"assets/bonus/coin3.xpm"
+# define TEXTURE_COIN4	"assets/bonus/coin4.xpm"
+# define TEXTURE_TRAP	"assets/bonus/trap.xpm"
+# define TEXTURE_TRAP_ACTIVE "assets/bonus/trap_active.xpm"
+# define TEXTURE_DOOR_OPEN "assets/bonus/door_open.xpm"
 
 # define WALL '1'
 # define FLOOR '0'
 # define DOOR 'E'
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
+/*	bonus */
+# define TRAP 'T'
+# define TRAP_ACTIVE 'A'
+# define DOOR_OPEN 'O'
 
 # define POS_FRONT 1
 # define POS_BACK 2
@@ -85,11 +92,19 @@ typedef struct	s_data_element
 	void	*player_back;
 	void	*player_left;
 	void	*player_right;
-	void	*coin1;
+/* BONUS IMG */
+	void	*coin1; 
 	void	*coin2;
 	void	*coin3;
 	void	*coin4;
 	void	*coin5;
+	int		coin_sprite;
+	void	*door_open;
+	void	*trap;
+	void	*trap_active;
+	int		d_x;
+	int		d_y;
+/*************/
 	void	*wall;
 	void	*floor;
 	void	*collectable;
@@ -170,6 +185,12 @@ int		data_hook(t_machine *data);
 
 
 /**********************BONUS_PART************************/
+int		first_dabbing(t_machine *data);
 void	manage_coin(t_machine *data, int x, int y);
+int		animate_dabbing(t_machine *data);
+char	*ft_itoa(int n);
+int		load_coin(t_machine *data);
+void	free_bonus_img(t_machine *data);
+int		manage_moove(int pos_y, int pos_x, t_machine *data);
 
 #endif

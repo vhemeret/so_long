@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 01:53:02 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/28 15:58:15 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:23:46 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	unexpected_char(char **map)
 		{
 			if (map[i][j] == '1' || map[i][j] == 'P'
 				|| map[i][j] == '0' || map[i][j] == 'C'
-				|| map[i][j] == 'E')
+				|| map[i][j] == 'E' || map[i][j] == 'T')
 				j++;
 			else
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 17:03:01 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/30 21:15:27 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,37 @@ void	pos_player(t_machine *data)
 	}
 }
 
+void	pos_door(t_machine *data)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < data->map->height)
+	{
+		x = -1;
+		while (++x < data->map->height)
+		{
+			if (data->map->map[y][x] == DOOR)
+			{
+				data->element->d_x = x;
+				data->element->d_y = y;
+				return ;
+			}
+		}
+	}
+}
+
 int	check_moove(int pos_y, int pos_x, t_machine *data)
 {
-	if (data->map->map[pos_y][pos_x] == WALL)
-		return (0);
-	if (data->map->map[pos_y][pos_x] == DOOR
-		&& data->element->nb_collectable != 0)
-		return (0);
-	else if (data->map->map[pos_y][pos_x] == DOOR
-		&& data->element->nb_collectable == 0)
+	if (data->map->map[pos_y][pos_x] == TRAP)
 	{
 		mlx_loop_end(data->init->mlx);
-		printf("YOU WIN WITH %i MOVES\n", data->element->move_count);
-		return (1);
+		printf("GAME OVER\n");
+		return (0);
 	}
-	if (data->map->map[pos_y][pos_x] == COLLECTIBLE)
-	{
-		data->map->map[pos_y][pos_x] = FLOOR;
-		data->element->nb_collectable--;
-	}
-	data->element->move_count++;
-	printf("%i\n", data->element->move_count);
+	if (!manage_moove(pos_y, pos_x, data))
+		return (0);
 	return (1);
 }
 
@@ -72,6 +82,7 @@ int	set_texture_player(int keynum)
 
 int	manage_hook(int keynum, t_machine *data)
 {
+	pos_door(data);
 	if (keynum == ESC)
 		mlx_loop_end(data->init->mlx);
 	if (keynum == UP)

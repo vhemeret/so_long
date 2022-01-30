@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 17:03:38 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:35:02 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:25:22 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_mlx(t_machine *data)
 int	main(int ac, char **av)
 {
 	t_machine	*data;
-
+	
 	data = manage_malloc_struct();
 	if (!data)
 		return (0);
@@ -50,9 +50,11 @@ int	main(int ac, char **av)
 	if (!init_mlx(data))
 		return (0);
 	data->element->move_count = 0;
+	data->element->coin_sprite = 0;
 	pos_player(data);
-	pixel_dabbing(data, POS_FRONT);
+	first_dabbing(data);
 	mlx_key_hook(data->init->window, manage_hook, data);
+	mlx_loop_hook(data->init->mlx, animate_dabbing, data);
 	mlx_hook(data->init->window, 17, (1L << 5), destroy_notify, data);
 	mlx_loop(data->init->mlx);
 	free_all(NULL, data);
