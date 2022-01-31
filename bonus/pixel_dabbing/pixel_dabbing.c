@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/30 20:25:03 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:43:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,10 @@ int	pixel_dabbing(t_machine *data, int position)
 				dabbing_element(data, data->element->floor, x, y);
 			if (data->map->map[y][x] == 'O')
 				dabbing_element(data, data->element->door_open, x, y);
-			if (data->map->map[y][x] == 'A')
-				dabbing_element(data, data->element->trap_active, x, y);
+			if (data->map->map[y][x] == 'T')
+				dabbing_element(data, data->element->trap, x, y);
 		}
 	}
 	check_position(position, data);
-	mlx_put_image_to_window(data->init->mlx, data->init->window,
-		data->img->img, 0, 0);
 	return (0);
 }

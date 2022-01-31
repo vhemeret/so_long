@@ -6,11 +6,11 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:32:26 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/30 18:45:50 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:47:58 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../so_long.h"
+#include "../../so_long.h"
 
 static long int	ft_size(int n)
 {

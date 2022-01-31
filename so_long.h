@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/30 21:13:13 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:54:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define TEXTURE_TRAP	"assets/bonus/trap.xpm"
 # define TEXTURE_TRAP_ACTIVE "assets/bonus/trap_active.xpm"
 # define TEXTURE_DOOR_OPEN "assets/bonus/door_open.xpm"
+# define TEXTURE_UFO "assets/bonus/ufo.xpm"
 
 # define WALL '1'
 # define FLOOR '0'
@@ -48,13 +49,15 @@
 # define PLAYER 'P'
 /*	bonus */
 # define TRAP 'T'
-# define TRAP_ACTIVE 'A'
+# define UFO 'U'
 # define DOOR_OPEN 'O'
 
 # define POS_FRONT 1
 # define POS_BACK 2
 # define POS_LEFT 3
 # define POS_RIGHT 4
+
+# define SPEED 150
 
 typedef enum	e_keynum
 {
@@ -92,16 +95,18 @@ typedef struct	s_data_element
 	void	*player_back;
 	void	*player_left;
 	void	*player_right;
-/* BONUS IMG */
+/* BONUS */
+	void	*coin_tab;
 	void	*coin1; 
 	void	*coin2;
 	void	*coin3;
 	void	*coin4;
 	void	*coin5;
 	int		coin_sprite;
+	int		frame;
 	void	*door_open;
 	void	*trap;
-	void	*trap_active;
+	void	*ufo;
 	int		d_x;
 	int		d_y;
 /*************/
@@ -189,8 +194,10 @@ int		first_dabbing(t_machine *data);
 void	manage_coin(t_machine *data, int x, int y);
 int		animate_dabbing(t_machine *data);
 char	*ft_itoa(int n);
+int		load_ufo(t_machine *data);
 int		load_coin(t_machine *data);
 void	free_bonus_img(t_machine *data);
 int		manage_moove(int pos_y, int pos_x, t_machine *data);
+
 
 #endif

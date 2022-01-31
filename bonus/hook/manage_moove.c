@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:50:15 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/30 21:15:01 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/31 19:46:17 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	manage_moove(int pos_y, int pos_x, t_machine *data)
 		data->map->map[pos_y][pos_x] = FLOOR;
 		data->element->nb_collectable--;
 	}
-	if (data->map->map[pos_y][pos_x] == DOOR_OPEN
+	if ((data->map->map[pos_y][pos_x] == DOOR_OPEN
+		|| data->map->map[pos_y][pos_x] == DOOR)
 		&& data->element->nb_collectable == 0)
 	{
 		mlx_loop_end(data->init->mlx);
-		printf("YOU WIN WITH %i MOVES\n", data->element->move_count);
+		printf("YOU WIN WITH %i MOVES\n", data->element->move_count + 1);
 		return (1);
 	}
 	data->element->move_count++;
