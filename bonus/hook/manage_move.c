@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_moove.c                                     :+:      :+:    :+:   */
+/*   manage_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:50:15 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:46:17 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 11:58:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	manage_moove(int pos_y, int pos_x, t_machine *data)
+int	manage_move(int pos_y, int pos_x, t_machine *data)
 {
 	if (data->map->map[pos_y][pos_x] == WALL)
 		return (0);

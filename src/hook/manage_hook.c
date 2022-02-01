@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:39:19 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/01/31 20:06:21 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_moove(int pos_y, int pos_x, t_machine *data)
 		&& data->element->nb_collectable == 0)
 	{
 		mlx_loop_end(data->init->mlx);
-		printf("YOU WIN WITH %i MOVES\n", data->element->move_count);
+		printf("YOU WIN WITH %i MOVES\n", data->element->move_count + 1);
 		return (1);
 	}
 	if (data->map->map[pos_y][pos_x] == COLLECTIBLE)

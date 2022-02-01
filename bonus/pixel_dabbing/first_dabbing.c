@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 15:45:47 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:52:24 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:28:24 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	dabbing(t_machine *data, int x, int y)
 		dabbing_element(data, data->element->door, x, y);
 	if (data->map->map[y][x] == 'T')
 		dabbing_element(data, data->element->trap, x, y);
-	if (data->map->map[y][x] == 'U')
-		dabbing_element(data, data->element->ufo, x, y);
 }
 
 int	first_dabbing(t_machine *data)

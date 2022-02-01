@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:43:40 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:28:05 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_moove(int pos_y, int pos_x, t_machine *data)
 		printf("GAME OVER\n");
 		return (0);
 	}
-	if (!manage_moove(pos_y, pos_x, data))
+	if (!manage_move(pos_y, pos_x, data))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 17:03:38 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:54:25 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:28:16 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	main(int ac, char **av)
 	if (!init_mlx(data))
 		return (0);
 	data->element->move_count = 0;
-	data->element->coin_sprite = 0;
+	data->element->frame_trap = 0;
+	data->element->state_wall = 0;
 	data->element->frame = 0;
 	pos_player(data);
 	first_dabbing(data);

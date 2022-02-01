@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:54:33 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:39:39 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define POS_BACK 2
 # define POS_LEFT 3
 # define POS_RIGHT 4
+# define NONE -1
 
 # define SPEED 150
 
@@ -102,11 +103,11 @@ typedef struct	s_data_element
 	void	*coin3;
 	void	*coin4;
 	void	*coin5;
-	int		coin_sprite;
-	int		frame;
 	void	*door_open;
 	void	*trap;
-	void	*ufo;
+	int		frame;
+	int		frame_trap;
+	int		state_wall;
 	int		d_x;
 	int		d_y;
 /*************/
@@ -197,7 +198,8 @@ char	*ft_itoa(int n);
 int		load_ufo(t_machine *data);
 int		load_coin(t_machine *data);
 void	free_bonus_img(t_machine *data);
-int		manage_moove(int pos_y, int pos_x, t_machine *data);
+int		manage_move(int pos_y, int pos_x, t_machine *data);
+void	move_trap(t_machine *data);
 
 
 #endif

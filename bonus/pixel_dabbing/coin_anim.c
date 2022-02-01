@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 20:12:46 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 19:55:15 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/01 14:25:57 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	manage_coin(t_machine *data, int x, int y)
 	}
 }
 
-void	get_coin(t_machine *data)
+void	move_coin(t_machine *data)
 {
 	int	y;
 	int	x;
@@ -51,7 +51,8 @@ int	animate_dabbing(t_machine *data)
 {
 	char	*nbr;
 
-	get_coin(data);
+	move_coin(data);
+	move_trap(data);
 	nbr = ft_itoa(data->element->move_count);
 	mlx_string_put(data->init->mlx, data->init->window, 10, 10, 0xFFFFFF, nbr);
 	mlx_put_image_to_window(data->init->mlx, data->init->window,
