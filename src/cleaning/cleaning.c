@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 02:14:03 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:40:34 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/04 22:19:26 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,15 @@ void	free_struct(t_machine *data)
 
 void	free_img(t_machine *data)
 {
-	if (data->img->img)
-		mlx_destroy_image(data->init->mlx, data->img->img);
-	if (data->element->collectable)
-		mlx_destroy_image(data->init->mlx, data->element->collectable);
-	if (data->element->floor)
-		mlx_destroy_image(data->init->mlx, data->element->floor);
-	if (data->element->wall)
-		mlx_destroy_image(data->init->mlx, data->element->wall);
-	if (data->element->door)
-		mlx_destroy_image(data->init->mlx, data->element->door);
-	if (data->element->player_front)
-		mlx_destroy_image(data->init->mlx, data->element->player_front);
-	if (data->element->player_back)
-		mlx_destroy_image(data->init->mlx, data->element->player_back);
-	if (data->element->player_left)
-		mlx_destroy_image(data->init->mlx, data->element->player_left);
-	if (data->element->player_right)
-		mlx_destroy_image(data->init->mlx, data->element->player_right);
+	mlx_destroy_image(data->init->mlx, data->img->img);
+	mlx_destroy_image(data->init->mlx, data->element->player_front);
+	mlx_destroy_image(data->init->mlx, data->element->player_back);
+	mlx_destroy_image(data->init->mlx, data->element->player_left);
+	mlx_destroy_image(data->init->mlx, data->element->player_right);
+	mlx_destroy_image(data->init->mlx, data->element->wall);
+	mlx_destroy_image(data->init->mlx, data->element->floor);
+	mlx_destroy_image(data->init->mlx, data->element->door);
+	mlx_destroy_image(data->init->mlx, data->element->collectable);
 }
 
 int	destroy_notify(t_machine *data)
@@ -72,7 +63,8 @@ int	free_all(char *str, t_machine *data)
 {
 	if (str)
 		printf("%s\n", str);
-	free_img(data);
+	if (data->init->texture_succes == 1)
+		free_img(data);
 	if (data->init->window)
 	{
 		mlx_clear_window(data->init->mlx, data->init->window);

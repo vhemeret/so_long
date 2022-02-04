@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:48:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/29 20:40:22 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/04 22:13:50 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	init_mlx(t_machine *data)
 	data->init->mlx = mlx_init();
 	if (!data->init->mlx)
 		return (free_all("Error\n/!\\ initialisation mlx /!\\", data));
-	if (!load_assets(data))
-		return (free_all("Error\n/!\\when trying to load xpm to img /!\\",
-				data));
 	data->init->window = mlx_new_window(data->init->mlx,
 			data->map->width * TEXTURE_WIDTH,
 			data->map->height * TEXTURE_HEIGHT, "So_long");
@@ -32,6 +29,9 @@ int	init_mlx(t_machine *data)
 		return (free_all("Error\n/!\\ initialisation window /!\\", data));
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->line_len, &data->img->endian);
+	if (!load_assets(data))
+		return (free_all("Error\n/!\\when trying to load xpm to img /!\\",
+				data));
 	return (1);
 }
 
@@ -49,6 +49,7 @@ int	main(int ac, char **av)
 	}
 	if (!init_mlx(data))
 		return (0);
+	data->init->texture_succes = 1;
 	data->element->move_count = 0;
 	pos_player(data);
 	pixel_dabbing(data, POS_FRONT);

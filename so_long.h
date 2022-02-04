@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/02/03 15:55:22 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/04 22:07:22 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define DOOR 'E'
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
-/*	bonus */
+/*	BONUS */
 # define TRAP 'T'
 # define UFO 'U'
 # define DOOR_OPEN 'O'
@@ -56,7 +56,6 @@
 # define POS_BACK 2
 # define POS_LEFT 3
 # define POS_RIGHT 4
-# define NONE -1
 
 # define SPEED 150
 
@@ -96,7 +95,11 @@ typedef struct	s_data_element
 	void	*player_back;
 	void	*player_left;
 	void	*player_right;
-/* BONUS */
+	void	*wall;
+	void	*floor;
+	void	*collectable;
+	void	*door;
+	/* BONUS */
 	void	*coin1; 
 	void	*coin2;
 	void	*coin3;
@@ -108,11 +111,7 @@ typedef struct	s_data_element
 	int		state_wall;
 	int		d_x;
 	int		d_y;
-/*************/
-	void	*wall;
-	void	*floor;
-	void	*collectable;
-	void	*door;
+
 }				t_data_element;
 
 /*	DATA SETTING MLX*/
@@ -120,6 +119,7 @@ typedef struct s_init
 {
 	void	*mlx;
 	void	*window;
+	int		texture_succes;
 }				t_init;
 
 /*	DATA MAP */
@@ -193,9 +193,7 @@ int		first_dabbing(t_machine *data);
 void	manage_coin(t_machine *data, int x, int y);
 int		animate_dabbing(t_machine *data);
 char	*ft_itoa(int n);
-int		load_ufo(t_machine *data);
 int		load_coin(t_machine *data);
-void	free_bonus_img(t_machine *data);
 int		manage_move(int pos_y, int pos_x, t_machine *data);
 void	move_trap(t_machine *data);
 void	up_is_player(t_machine *data, int y, int x);
@@ -204,5 +202,6 @@ void	update_player_less_x(t_machine *data);
 void	update_player_more_x(t_machine *data);
 void	update_player_more_y(t_machine *data);
 void	update_player_less_y(t_machine *data);
+int		load_door_open(t_machine *data);
 
 #endif
