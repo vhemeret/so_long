@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:33:44 by vahemere          #+#    #+#             */
-/*   Updated: 2022/02/01 21:39:57 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:44:58 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	pixel_dabbing(t_machine *data, int position)
 				dabbing_element(data, data->element->trap, x, y);
 		}
 	}
+	mlx_put_image_to_window(data->init->mlx,
+		data->init->window, data->img->img, 0, 0);
 	check_position(position, data);
 	return (0);
 }

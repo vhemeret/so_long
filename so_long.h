@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:34:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/02/01 21:39:39 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:55:22 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,10 @@ typedef struct	s_data_element
 	void	*player_left;
 	void	*player_right;
 /* BONUS */
-	void	*coin_tab;
 	void	*coin1; 
 	void	*coin2;
 	void	*coin3;
 	void	*coin4;
-	void	*coin5;
 	void	*door_open;
 	void	*trap;
 	int		frame;
@@ -200,6 +198,11 @@ int		load_coin(t_machine *data);
 void	free_bonus_img(t_machine *data);
 int		manage_move(int pos_y, int pos_x, t_machine *data);
 void	move_trap(t_machine *data);
-
+void	up_is_player(t_machine *data, int y, int x);
+void	down_is_player(t_machine *data, int y, int x);
+void	update_player_less_x(t_machine *data);
+void	update_player_more_x(t_machine *data);
+void	update_player_more_y(t_machine *data);
+void	update_player_less_y(t_machine *data);
 
 #endif

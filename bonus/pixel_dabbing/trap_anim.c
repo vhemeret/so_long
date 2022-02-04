@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:57:34 by vahemere          #+#    #+#             */
-/*   Updated: 2022/02/01 21:41:14 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:00:56 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,22 @@ void	move_down(t_machine *data, int y, int x)
 
 void	manage_trap(t_machine *data, int y, int x)
 {
-	if (data->element->frame_trap == 400)
+	if (data->element->frame_trap == 100)
 	{
-		if (data->map->map[y + 1][x] == FLOOR && data->element->state_wall == 0)
+		if ((data->map->map[y + 1][x] == FLOOR
+			|| data->map->map[y + 1][x] == PLAYER)
+			&& data->element->state_wall == 0)
 		{
+			down_is_player(data, y, x);
 			move_down(data, y, x);
 			if (data->map->map[y + 2][x] == WALL)
 				data->element->state_wall = 1;
 		}
-		else if (data->map->map[y - 1][x] == FLOOR
+		else if ((data->map->map[y - 1][x] == FLOOR
+			|| data->map->map[y - 1][x] == PLAYER)
 			&& data->element->state_wall == 1)
 		{
+			up_is_player(data, y, x);
 			move_up(data, y, x);
 			if (data->map->map[y - 2][x] == WALL)
 				data->element->state_wall = 0;
