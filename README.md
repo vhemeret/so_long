@@ -25,5 +25,6 @@ Choose corresponding map to the map folder.
 ## Preview
 
 Use w, a, s, d to move.
+
 ![Alt Text](https://s10.gifyu.com/images/gamec5168759fce88c90.gif)
 
