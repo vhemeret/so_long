@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/01/31 20:06:21 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/06 17:41:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pos_player(t_machine *data)
 	while (++y < data->map->height)
 	{
 		x = -1;
-		while (++x < data->map->height)
+		while (++x < data->map->width)
 		{
 			if (data->map->map[y][x] == PLAYER)
 			{
@@ -76,16 +76,16 @@ int	manage_hook(int keynum, t_machine *data)
 		mlx_loop_end(data->init->mlx);
 	if (keynum == UP)
 		if (check_moove(data->element->pos_y - 1, data->element->pos_x, data))
-			data->element->pos_y--;
+			update_player_less_y(data);
 	if (keynum == DOWN)
 		if (check_moove(data->element->pos_y + 1, data->element->pos_x, data))
-			data->element->pos_y++;
+			update_player_more_y(data);
 	if (keynum == LEFT)
 		if (check_moove(data->element->pos_y, data->element->pos_x - 1, data))
-			data->element->pos_x--;
+			update_player_less_x(data);
 	if (keynum == RIGHT)
 		if (check_moove(data->element->pos_y, data->element->pos_x + 1, data))
-			data->element->pos_x++;
+			update_player_more_x(data);
 	pixel_dabbing(data, set_texture_player(keynum));
 	return (0);
 }

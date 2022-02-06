@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_hook.c                                      :+:      :+:    :+:   */
+/*   manage_hook_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 14:59:56 by vahemere          #+#    #+#             */
-/*   Updated: 2022/02/03 15:57:14 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/02/06 17:37:26 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pos_player(t_machine *data)
 	while (++y < data->map->height)
 	{
 		x = -1;
-		while (++x < data->map->height)
+		while (++x < data->map->width)
 		{
 			if (data->map->map[y][x] == PLAYER)
 			{
